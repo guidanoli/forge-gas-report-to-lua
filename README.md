@@ -1,6 +1,6 @@
-# forge-gas-report-to-lua
+# LGRP - Lua Gas Report Parser
 
-Converts Forge Gas Reports to Lua files
+Parses Gas Reports in different formats and outputs a Lua table in the same format. This format can be later used by other tools to produce diffs or other analysis.
 
 ## Dependencies
 
