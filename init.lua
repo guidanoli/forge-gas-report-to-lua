@@ -10,20 +10,31 @@ local Grammar = lpeg.P{
     "Report",
     Report = lpeg.Ct(Table * (NewLine^2 * Table)^0),
     Table = lpeg.Ct(Line * (NewLine * Line)^0),
-    Line = lpeg.Ct(lpeg.P"|" * (Space * Cell * Space * Bar)^1),
-    Cell = lpeg.C(((1 - (Bar + NewLine)) - #(Space * Bar))^0),
+    Line = lpeg.Ct(Bar * (Space * Cell * Space * Bar)^1),
+    Cell = lpeg.C(((1 - (Bar + NewLine)) - (Space * Bar))^0),
 }
 
+local function getcontractname (title)
+    local alpha = lpeg.R"az" + lpeg.R"AZ"
+    local num = lpeg.R"09"
+    local uscore = lpeg.P"_"
+    local name = (alpha + uscore) * (alpha + num + uscore)^0
+    local colon = lpeg.P":"
+    local suffix = lpeg.P" contract" * -1
+    local patt = (1 - (colon * name * suffix))^0 * colon * lpeg.C(name) * suffix
+    return assert(patt:match(title), 'bad title')
+end
+
 local function compile (ast)
-    local ast1 = {}
+    local report = {}
     for i, t in ipairs(ast) do
-        local t1 = {}
-        t1.name = assert(t[1][1])
-        t1.deploymentCost = tonumber(t[4][1])
-        t1.deploymentSize = tonumber(t[4][2])
-        local funcs = {}
+        local contract = {}
+        local name = getcontractname(t[1][1])
+        contract.deploymentCost = tonumber(t[4][1])
+        contract.deploymentSize = tonumber(t[4][2])
+        local functions = {}
         for j = 6, #t do
-            funcs[t[j][1]] = {
+            functions[t[j][1]] = {
                 min = tonumber(t[j][2]),
                 avg = tonumber(t[j][3]),
                 median = tonumber(t[j][4]),
@@ -31,10 +42,10 @@ local function compile (ast)
                 ncalls = tonumber(t[j][6]),
             }
         end
-        t1.functions = funcs
-        ast1[i] = t1
+        contract.functions = functions
+        report[name] = contract
     end
-    return ast1
+    return report
 end
 
 local function parse (s)
