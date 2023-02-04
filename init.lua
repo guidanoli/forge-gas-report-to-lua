@@ -29,12 +29,13 @@ local function compile (ast)
     local report = {}
     for i, t in ipairs(ast) do
         local contract = {}
-        local name = getcontractname(t[1][1])
+        local contractname = getcontractname(t[1][1])
         contract.deploymentCost = tonumber(t[4][1])
         contract.deploymentSize = tonumber(t[4][2])
         local functions = {}
         for j = 6, #t do
-            functions[t[j][1]] = {
+            local funcname = t[j][1]
+            functions[funcname] = {
                 min = tonumber(t[j][2]),
                 avg = tonumber(t[j][3]),
                 median = tonumber(t[j][4]),
@@ -43,7 +44,7 @@ local function compile (ast)
             }
         end
         contract.functions = functions
-        report[name] = contract
+        report[contractname] = contract
     end
     return report
 end
