@@ -11,7 +11,7 @@ local Grammar = lpeg.P{
     Report = lpeg.Ct(Table * (NewLine^2 * Table)^0),
     Table = lpeg.Ct(Line * (NewLine * Line)^0),
     Line = lpeg.Ct(Bar * (Space * Cell * Space * Bar)^1),
-    Cell = lpeg.C(((1 - (Bar + NewLine)) - (Space * Bar))^0),
+    Cell = lpeg.C((1 - (Bar + NewLine + Space * Bar))^0),
 }
 
 local function getcontractname (title)
