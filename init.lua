@@ -15,7 +15,7 @@ local Grammar = lpeg.P{
 }
 
 local function getcontractname (title)
-    local alpha = lpeg.R"az" + lpeg.R"AZ"
+    local alpha = lpeg.R("az", "AZ")
     local num = lpeg.R"09"
     local uscore = lpeg.P"_"
     local name = (alpha + uscore) * (alpha + num + uscore)^0
