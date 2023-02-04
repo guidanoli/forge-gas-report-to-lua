@@ -151,6 +151,6 @@ local function serialize (t, sp, visited)
     end
 end
 
-local ast = parse(io.stdin:read('a'))
+local ast = parse(io.read('a'))
 local t = compile(ast)
 print(serialize(t))
