@@ -8,8 +8,8 @@ do
         'function', 'goto', 'if', 'in', 'local', 'nil', 'not', 'or',
         'repeat', 'return', 'then', 'true', 'until', 'while',
     }
-    for k, v in pairs(reservedlst) do
-        util.reserved[v] = k
+    for i, v in ipairs(reservedlst) do
+        util.reserved[v] = true
     end
 end
 
@@ -19,8 +19,8 @@ do
     local stypeslst = {
         'nil', 'boolean', 'number', 'string', 'table'
     }
-    for k, v in pairs(stypeslst) do
-        stypes[v] = k
+    for i, v in ipairs(stypeslst) do
+        util.stypes[v] = true
     end
 end
 
@@ -56,7 +56,7 @@ function util:serialize (t, sp, visited)
         local ikeys = {}
         for i, v in ipairs(t) do
             ikeys[i] = true
-            s = s .. '\n' .. np .. serialize(v, np, visited) .. ','
+            s = s .. '\n' .. np .. self:serialize(v, np, visited) .. ','
         end
 
         -- print name-like string keys in order
@@ -73,15 +73,15 @@ function util:serialize (t, sp, visited)
         table.sort(onkeys)
         for _, k in ipairs(onkeys) do
             local v = rawget(t, k)
-            local vstr = serialize(v, np, visited)
+            local vstr = self:serialize(v, np, visited)
             s = s .. '\n' .. np .. k .. ' = ' .. vstr .. ','
         end
 
         -- print other keys randomly
         for k, v in pairs(t) do
             if not ikeys[k] and not nkeys[k] then
-                local kstr = '[' .. serialize(k, np, visited) .. ']'
-                local vstr = serialize(v, np, visited)
+                local kstr = '[' .. self:serialize(k, np, visited) .. ']'
+                local vstr = self:serialize(v, np, visited)
                 s = s .. '\n' .. np .. kstr .. ' = ' .. vstr .. ','
             end
         end
