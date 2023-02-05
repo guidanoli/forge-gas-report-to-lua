@@ -1,4 +1,4 @@
-# LGRP - Lua Gas Report Parser
+# Gas Report Parser
 
 Parses gas reports in different formats and outputs a Lua table in the same format. These Lua tables can be later used to produce diffs and other analysis.
 
