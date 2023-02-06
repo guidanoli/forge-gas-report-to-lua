@@ -1,5 +1,5 @@
 local lpeg = require "lpeg"
-local util = require "util"
+local util = require "grp.util"
 
 local ForgeGasReport
 do
