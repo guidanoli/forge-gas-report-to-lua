@@ -6,15 +6,17 @@ do
     local Bar = lpeg.P"|"
     local Space = lpeg.P" "^0
     local NewLine = lpeg.P"\n"
-    local Table = lpeg.V"Table"
     local Line = lpeg.V"Line"
+    local Table = lpeg.V"Table"
+    local TableLine = lpeg.V"TableLine"
     local Cell = lpeg.V"Cell"
 
     ForgeGasReport = lpeg.P{
         "Report",
-        Report = lpeg.Ct(Table * (NewLine^2 * Table)^0),
-        Table = lpeg.Ct(Line * (NewLine * Line)^0),
-        Line = lpeg.Ct(Bar * (Space * Cell * Space * Bar)^1),
+        Report = lpeg.Ct(Line * (NewLine * Line)^0),
+        Line = Table + (1 - NewLine)^0,
+        Table = lpeg.Ct(TableLine * (NewLine * TableLine)^0),
+        TableLine = lpeg.Ct(Bar * (Space * Cell * Space * Bar)^1),
         Cell = lpeg.C((1 - (Bar + NewLine + Space * Bar))^0),
     }
 end
