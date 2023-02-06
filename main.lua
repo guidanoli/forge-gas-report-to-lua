@@ -12,7 +12,7 @@ Usage: lua main.lua <command> [args...]
 Commands:
 
   parse --format=<fmt>
-    where <fmt> can be: forge
+    where <fmt> can be: forge, hardhat
 
   diff <a> [<b>]
     where <a> and <b> are paths to Lua files
@@ -48,6 +48,9 @@ if type(arg) == 'table' and (lpeg.P"main.lua" * -1):match(arg[0]) then
             help('expected --format=<fmt> argument')
         elseif argt.format == 'forge' then
             local t = grp.forge.parse(io.read('a'))
+            printluatable(t)
+        elseif argt.format == 'hardhat' then
+            local t = grp.hardhat.parse(io.read('a'))
             printluatable(t)
         else
             help('invalid <fmt>: ' .. argt.format)

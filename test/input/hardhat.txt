@@ -1,0 +1,183 @@
+Downloading compiler 0.7.4
+Downloading compiler 0.8.14
+Warning: Function state mutability can be restricted to view
+  --> contracts/v2/test/PoSV2Aux.sol:72:5:
+   |
+72 |     function canProduceBlockGas(
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Compiled 47 Solidity files successfully
+
+  BlockSelector
+    ✓ instantiate should activate the instance
+    ✓ produce block reverts if weight is zero
+    ✓ produce block can only be called by operator address
+    ✓ the amount of addresses eligible should increase with mainchain blocks
+    ✓ the weight variable should increase chance of producing a block
+    ✓ difficulty should adjust according to number of blocks passed
+    ✓ every 256 blocks target should be updated
+    ✓ producing block resets selection
+    ✓ isConcerned should always return false
+    ✓ getSubInstances should return empty
+    ✓ blocks passed should reset after 256 blocks
+    ✓ getters should return expected values
+
+  BlockSelectorV2
+    ✓ instantiate should activate the instance
+    ✓ produce block reverts if weight is zero
+    ✓ produce block can only be called by operator address
+    ✓ the amount of addresses eligible should increase with mainchain blocks
+	 skipping regression test undefined
+    ✓ [regression] small weight should eventually be able to produce
+    ✓ the weight variable should increase chance of producing a block
+    ✓ difficulty should adjust according to number of blocks passed
+    ✓ every 256 blocks target should be updated
+    ✓ producing block resets selection
+    ✓ isConcerned should always return false
+    ✓ getSubInstances should return empty
+    ✓ blocks passed should reset after 256 blocks
+    ✓ getters should return expected values
+
+  PoS
+    ✓ instantiate should activate instance
+    ✓ instantiate should emit event
+    ✓ terminate
+    ✓ rewards should be distributed correctly
+    ✓ user should be concerned only if their ctsi balance > 0
+    ✓ subinstance should return block selector address and index
+    ✓ getters should return the correct values
+    ✓ Reward Manager address should be unique per instance
+
+  RewardManager
+    ✓ reward function can only be called by PoS
+    ✓ current currentReward has to be bigger than zero
+    ✓ reward should emit event
+    ✓ numerator == denominator should generate constant reward of max prize
+    ✓ current currentReward should generate currentRewards correctly
+
+  Staking
+    ✓ stake should revert if transferFrom reverts
+    ✓ deposit stake should emit event
+    ✓ stake shouldnt change staked balance if tokens are not mature
+    ✓ mature deposits should count as stake
+    ✓ new deposits should reset maturation date
+    ✓ stake() priority should be tokens from release pool
+    ✓ multiple deposit should mature at once
+    ✓ withdraw should revert if releases are not ready
+    ✓ withdraw should revert if amount is zero
+    ✓ withdraw should revert if tokens are not ready to be released
+    ✓ unstake should revert if amount is zero
+    ✓ unstake should revert if amount is too big
+    ✓ unstake should move funds from m.amount first
+    ✓ unstake should emit event
+    ✓ withdraw should emit event
+    ✓ maturing timestamp getter
+    ✓ maturing balance getter
+    ✓ releasing timestamp getter
+    ✓ releasing balance getter
+
+  PoSV2Impl
+    ✓ block produced events
+    ✓ terminate
+    ✓ getters should return the correct values
+    ✓ produce block reverts
+
+  PoSV2Aux
+    ✓ produceBlock(v1) 50 times
+    ✓ produceBlock(v2) 50 times
+    ✓ reward(v1) 50 times
+    ✓ reward(v2) 50 times
+    ✓ internal functions gas estimate
+	 skipping regression test undefined
+    ✓ [regression] eligibility should exactly match BlockSelectorV2 (400 wallets in 100 cycles)
+	 skipping regression test undefined
+    ✓ [regression] eligibility should exactly match BlockSelectorV2 (1 wallet in 48 hours)
+
+  PoSV2Factorympl
+    ✓ new chain events
+
+  RewardManagerV2
+    ✓ reward events
+    ✓ reward reverts
+    ✓ getter functions return the correct values
+
+·-----------------------------------------------|---------------------------|-------------|-----------------------------·
+|              Solc version: 0.7.4              ·  Optimizer enabled: true  ·  Runs: 200  ·  Block limit: 30000000 gas  │
+················································|···························|·············|······························
+|  Methods                                                                                                              │
+························|·······················|·············|·············|·············|···············|··············
+|  Contract             ·  Method               ·  Min        ·  Max        ·  Avg        ·  # calls      ·  eur (avg)  │
+························|·······················|·············|·············|·············|···············|··············
+|  BlockSelector        ·  instantiate          ·     139730  ·     156830  ·     155515  ·           13  ·          -  │
+························|·······················|·············|·············|·············|···············|··············
+|  BlockSelector        ·  produceBlock         ·      59976  ·      62819  ·      61677  ·            8  ·          -  │
+························|·······················|·············|·············|·············|···············|··············
+|  BlockSelectorV2      ·  instantiate          ·     140074  ·     157174  ·     155859  ·           13  ·          -  │
+························|·······················|·············|·············|·············|···············|··············
+|  BlockSelectorV2      ·  produceBlock         ·      49558  ·      52542  ·      51406  ·            8  ·          -  │
+························|·······················|·············|·············|·············|···············|··············
+|  PoS                  ·  instantiate          ·     463250  ·     480374  ·     477258  ·           11  ·          -  │
+························|·······················|·············|·············|·············|···············|··············
+|  PoS                  ·  produceBlock         ·          -  ·          -  ·     113748  ·            2  ·          -  │
+························|·······················|·············|·············|·············|···············|··············
+|  PoS                  ·  terminate            ·          -  ·          -  ·      49699  ·            1  ·          -  │
+························|·······················|·············|·············|·············|···············|··············
+|  PoSV2Aux             ·  _produceBlockGas     ·      77324  ·      80292  ·      79021  ·           50  ·          -  │
+························|·······················|·············|·············|·············|···············|··············
+|  PoSV2Aux             ·  adjustDifficultyGas  ·      28419  ·      31185  ·      29968  ·           50  ·          -  │
+························|·······················|·············|·············|·············|···············|··············
+|  PoSV2Aux             ·  canProduceBlockGas   ·      33025  ·      33224  ·      33128  ·           50  ·          -  │
+························|·······················|·············|·············|·············|···············|··············
+|  PoSV2Aux             ·  produceBlock         ·     161168  ·     191259  ·     187283  ·           52  ·          -  │
+························|·······················|·············|·············|·············|···············|··············
+|  PoSV2Aux             ·  produceBlock         ·     112764  ·     115835  ·     113052  ·           50  ·          -  │
+························|·······················|·············|·············|·············|···············|··············
+|  PoSV2Aux             ·  recordBlockGas       ·     111156  ·     134308  ·     131279  ·           50  ·          -  │
+························|·······················|·············|·············|·············|···············|··············
+|  PoSV2FactoryImpl     ·  createNewChain       ·          -  ·          -  ·    1980246  ·            4  ·          -  │
+························|·······················|·············|·············|·············|···············|··············
+|  PoSV2Impl            ·  produceBlock         ·     158393  ·     168107  ·     162242  ·            5  ·          -  │
+························|·······················|·············|·············|·············|···············|··············
+|  PoSV2Impl            ·  produceBlock         ·     112921  ·     112932  ·     112925  ·            3  ·          -  │
+························|·······················|·············|·············|·············|···············|··············
+|  PoSV2Impl            ·  terminate            ·          -  ·          -  ·      42026  ·            1  ·          -  │
+························|·······················|·············|·············|·············|···············|··············
+|  RewardManager        ·  reward               ·          -  ·          -  ·      34775  ·            1  ·          -  │
+························|·······················|·············|·············|·············|···············|··············
+|  RewardManagerV2Impl  ·  reward               ·      90709  ·     137175  ·     119164  ·           54  ·          -  │
+························|·······················|·············|·············|·············|···············|··············
+|  RewardManagerV2Impl  ·  reward               ·      48034  ·      50404  ·      48133  ·           54  ·          -  │
+························|·······················|·············|·············|·············|···············|··············
+|  StakingImpl          ·  stake                ·      53453  ·      90287  ·      81610  ·           24  ·          -  │
+························|·······················|·············|·············|·············|···············|··············
+|  StakingImpl          ·  unstake              ·      36093  ·      75093  ·      63186  ·           11  ·          -  │
+························|·······················|·············|·············|·············|···············|··············
+|  StakingImpl          ·  withdraw             ·      42650  ·      47450  ·      43450  ·            6  ·          -  │
+························|·······················|·············|·············|·············|···············|··············
+|  Deployments                                  ·                                         ·  % of limit   ·             │
+················································|·············|·············|·············|···············|··············
+|  BlockSelector                                ·          -  ·          -  ·    3815242  ·       12.7 %  ·          -  │
+················································|·············|·············|·············|···············|··············
+|  BlockSelectorV2                              ·          -  ·          -  ·     864660  ·        2.9 %  ·          -  │
+················································|·············|·············|·············|···············|··············
+|  Difficulty                                   ·          -  ·          -  ·     150550  ·        0.5 %  ·          -  │
+················································|·············|·············|·············|···············|··············
+|  Eligibility                                  ·          -  ·          -  ·     282066  ·        0.9 %  ·          -  │
+················································|·············|·············|·············|···············|··············
+|  PoS                                          ·          -  ·          -  ·    1511532  ·          5 %  ·          -  │
+················································|·············|·············|·············|···············|··············
+|  PoSV2Aux                                     ·          -  ·          -  ·    2390967  ·          8 %  ·          -  │
+················································|·············|·············|·············|···············|··············
+|  PoSV2FactoryImpl                             ·          -  ·          -  ·    2535154  ·        8.5 %  ·          -  │
+················································|·············|·············|·············|···············|··············
+|  PoSV2Impl                                    ·          -  ·          -  ·    2113813  ·          7 %  ·          -  │
+················································|·············|·············|·············|···············|··············
+|  RewardManager                                ·          -  ·          -  ·     341685  ·        1.1 %  ·          -  │
+················································|·············|·············|·············|···············|··············
+|  RewardManagerV2Impl                          ·     734667  ·     734679  ·     734676  ·        2.4 %  ·          -  │
+················································|·············|·············|·············|···············|··············
+|  StakingImpl                                  ·     626220  ·     626268  ·     626264  ·        2.1 %  ·          -  │
+·-----------------------------------------------|-------------|-------------|-------------|---------------|-------------·
+
+  72 passing (1m)
