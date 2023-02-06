@@ -43,8 +43,8 @@ local function compile (ast)
     for i, t in ipairs(ast) do
         local contract = {}
         local contractname = getcontractname(t[1][1])
-        contract.deploymentCost = tonumber(t[4][1])
-        contract.deploymentSize = tonumber(t[4][2])
+        contract.avg = tonumber(t[4][1])
+        contract.size = tonumber(t[4][2])
         local functions = {}
         for j = 6, #t do
             local funcname = t[j][1]
