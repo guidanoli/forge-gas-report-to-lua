@@ -28,7 +28,7 @@ if type(arg) == 'table' and (lpeg.P"main.lua" * -1):match(arg[0]) then
         for i = 2, #arg do
             local a = rawget(arg, i)
             local key, value = KeywordArgument:match(a)
-            if not key then error('invalid argument: ' .. a) end
+            if not key then help('invalid argument to parse: ' .. a) end
             rawset(config, key, value)
         end
         if not config.format then
