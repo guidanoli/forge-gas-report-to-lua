@@ -67,4 +67,4 @@ end
 
 local ast = parse(io.read('a'))
 local t = compile(ast)
-print(util:serialize(t))
+print('return ' .. util:serialize(t))
