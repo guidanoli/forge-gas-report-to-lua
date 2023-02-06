@@ -6,7 +6,9 @@ do
     local Bar = lpeg.P"|"
     local Space = lpeg.P" "^0
     local NewLine = lpeg.P"\n"
-    local Table, Line, Cell = lpeg.V"Table", lpeg.V"Line", lpeg.V"Cell"
+    local Table = lpeg.V"Table"
+    local Line = lpeg.V"Line"
+    local Cell = lpeg.V"Cell"
 
     ForgeGasReport = lpeg.P{
         "Report",
