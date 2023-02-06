@@ -19,7 +19,7 @@ local function help (s)
     error(s .. '\n' .. helpmsg)
 end
 
-if type(arg) == 'table' and arg[0]:find('main%.lua$') then
+if type(arg) == 'table' and (lpeg.P"main.lua" * -1):match(arg[0]) then
     if not arg[1] then
         help('expected <command>')
     end
