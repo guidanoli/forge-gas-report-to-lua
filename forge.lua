@@ -17,7 +17,7 @@ do
         Line = Table + (1 - NewLine)^0,
         Table = lpeg.Ct(TableLine * (NewLine * TableLine)^0),
         TableLine = lpeg.Ct(Bar * (Space * Cell * Space * Bar)^1),
-        Cell = lpeg.C((1 - (Bar + NewLine + Space * Bar))^0),
+        Cell = lpeg.C((1 - (NewLine + Space * Bar))^0),
     }
 end
 
