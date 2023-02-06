@@ -1,5 +1,6 @@
 local lpeg = require "lpeg"
-local util = require "grp.util"
+
+local forge = {}
 
 local ForgeGasReport
 do
@@ -61,10 +62,9 @@ local function compile (ast)
     return report
 end
 
-local function parse (s)
-    return assert(ForgeGasReport:match(s), 'bad gas report')
+function forge.parse (s)
+    local ast = ForgeGasReport:match(s)
+    return ast and compile(ast)
 end
 
-local ast = parse(io.read('a'))
-local t = compile(ast)
-print('return ' .. util:serialize(t))
+return forge
