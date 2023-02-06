@@ -34,6 +34,16 @@ function util:isserializable (o)
     return self.stypes[type(t)] ~= nil
 end
 
+function util.keycmp (a, b)
+    local ta = type(a)
+    local tb = type(b)
+    if ta == tb then
+        return tostring(a) < tostring(b)
+    else
+        return ta < tb
+    end
+end
+
 function util:serialize (t, sp, visited)
     sp = sp or ''
     visited = visited or {}
@@ -61,25 +71,35 @@ function util:serialize (t, sp, visited)
 
         -- print name-like string keys in order
         local nkeys = {}
-        local onkeys = {}
-        for k, v in pairs(t) do
-            if not ikeys[k] then
-                if type(k) == 'string' and self:isname(k) then
-                    table.insert(onkeys, k)
-                    nkeys[k] = true
+        do
+            local onkeys = {}
+            for k in pairs(t) do
+                if not ikeys[k] then
+                    if type(k) == 'string' and self:isname(k) then
+                        table.insert(onkeys, k)
+                        nkeys[k] = true
+                    end
                 end
             end
-        end
-        table.sort(onkeys)
-        for _, k in ipairs(onkeys) do
-            local v = rawget(t, k)
-            local vstr = self:serialize(v, np, visited)
-            s = s .. '\n' .. np .. k .. ' = ' .. vstr .. ','
+            table.sort(onkeys)
+            for _, k in ipairs(onkeys) do
+                local v = rawget(t, k)
+                local vstr = self:serialize(v, np, visited)
+                s = s .. '\n' .. np .. k .. ' = ' .. vstr .. ','
+            end
         end
 
-        -- print other keys randomly
-        for k, v in pairs(t) do
-            if not ikeys[k] and not nkeys[k] then
+        -- print remaining keys in order
+        do
+            local orkeys = {}
+            for k in pairs(t) do
+                if not ikeys[k] and not nkeys[k] then
+                    table.insert(orkeys, k)
+                end
+            end
+            table.sort(orkeys, self.keycmp)
+            for _, k in ipairs(orkeys) do
+                local v = rawget(t, k)
                 local kstr = '[' .. self:serialize(k, np, visited) .. ']'
                 local vstr = self:serialize(v, np, visited)
                 s = s .. '\n' .. np .. kstr .. ' = ' .. vstr .. ','
