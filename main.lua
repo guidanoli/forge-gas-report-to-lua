@@ -3,7 +3,7 @@ local grp = require 'grp'
 
 local KeywordArgument = lpeg.P"--" * lpeg.C((1 - lpeg.P"=")^1) * lpeg.P"=" * lpeg.C(lpeg.P(1)^0)
 
-local helpmsg = [[
+local helpmsg = [=[
 
 Gas Report Parser
 
@@ -13,10 +13,29 @@ Commands:
 
   parse --format=<fmt>
     where <fmt> can be: forge
-]]
+
+  diff <a> [<b>]
+    where <a> and <b> are paths to Lua files
+    if <b> is omitted, stdin is used instead
+]=]
 
 local function help (s)
     error(s .. '\n' .. helpmsg)
+end
+
+local function parseargs (start)
+    local argt = {}
+    for i = start, #arg do
+        local a = rawget(arg, i)
+        local key, value = KeywordArgument:match(a)
+        if not key then help('invalid argument: ' .. a) end
+        rawset(argt, key, value)
+    end
+    return argt
+end
+
+local function printluatable (t)
+    io.write('return ' .. grp.util:serialize(t) .. '\n')
 end
 
 if type(arg) == 'table' and (lpeg.P"main.lua" * -1):match(arg[0]) then
@@ -24,21 +43,23 @@ if type(arg) == 'table' and (lpeg.P"main.lua" * -1):match(arg[0]) then
         help('expected <command>')
     end
     if arg[1] == 'parse' then
-        local config = {}
-        for i = 2, #arg do
-            local a = rawget(arg, i)
-            local key, value = KeywordArgument:match(a)
-            if not key then help('invalid argument to parse: ' .. a) end
-            rawset(config, key, value)
-        end
-        if not config.format then
+        local argt = parseargs(2)
+        if not argt.format then
             help('expected --format=<fmt> argument')
-        elseif config.format == 'forge' then
+        elseif argt.format == 'forge' then
             local t = grp.forge.parse(io.read('a'))
-            io.write('return ' .. grp.util:serialize(t) .. '\n')
+            printluatable(t)
         else
-            help('invalid <fmt>: ' .. config.format)
+            help('invalid <fmt>: ' .. argt.format)
         end
+    elseif arg[1] == 'diff' then
+        if not arg[2] then
+            help('expected <a>')
+        end
+        local ta = loadfile(arg[2])()
+        local tb = loadfile(arg[3])()
+        local td = grp.util:difftables(ta, tb)
+        printluatable(td)
     else
         help('invalid <command>: ' .. arg[1])
     end
