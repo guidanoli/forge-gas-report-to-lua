@@ -1,6 +1,9 @@
 return {
   Difficulty = {
-    avg = 110563,
+    deployment = {
+      avg = 110563,
+      size = 505,
+    },
     functions = {
       getNewDifficulty = {
         avg = 21715,
@@ -10,43 +13,49 @@ return {
         ncalls = 2513,
       },
     },
-    size = 505,
   },
   Eligibility = {
-    avg = 231479,
+    deployment = {
+      avg = 218267,
+      size = 1043,
+    },
     functions = {
       whenCanProduceBlock = {
-        avg = 26184,
-        max = 28727,
-        median = 26187,
+        avg = 25992,
+        max = 28535,
+        median = 25995,
         min = 21489,
         ncalls = 162518,
       },
     },
-    size = 1109,
   },
   PoSV2Impl = {
-    avg = 1928358,
+    deployment = {
+      avg = 1928158,
+      size = 10362,
+    },
     functions = {
       ["produceBlock(uint256)(bool)"] = {
-        avg = 38674,
-        max = 58261,
-        median = 38658,
-        min = 35837,
+        avg = 38482,
+        max = 58069,
+        median = 38466,
+        min = 35645,
         ncalls = 1000,
       },
       ["produceBlock(uint32,bytes)(bool)"] = {
-        avg = 129666,
-        max = 157794,
-        median = 129156,
-        min = 106266,
+        avg = 129474,
+        max = 157602,
+        median = 128964,
+        min = 106074,
         ncalls = 1001,
       },
     },
-    size = 10363,
   },
   RewardManagerV2Impl = {
-    avg = 649080,
+    deployment = {
+      avg = 649080,
+      size = 3558,
+    },
     functions = {
       ["reward(uint32,address)"] = {
         avg = 25012,
@@ -63,10 +72,12 @@ return {
         ncalls = 12,
       },
     },
-    size = 3558,
   },
   UnrolledCordic = {
-    avg = 337380,
+    deployment = {
+      avg = 337380,
+      size = 1638,
+    },
     functions = {
       log2Times1e18 = {
         avg = 23489,
@@ -76,6 +87,5 @@ return {
         ncalls = 162475,
       },
     },
-    size = 1638,
   },
 }

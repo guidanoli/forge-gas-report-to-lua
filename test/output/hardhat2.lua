@@ -1,6 +1,8 @@
 return {
   BlockSelector = {
-    avg = 3813700,
+    deployment = {
+      avg = 3815242,
+    },
     functions = {
       instantiate = {
         avg = 155515,
@@ -9,15 +11,17 @@ return {
         ncalls = 13,
       },
       produceBlock = {
-        avg = 61659,
-        max = 62801,
-        min = 59958,
+        avg = 61649,
+        max = 62819,
+        min = 59921,
         ncalls = 8,
       },
     },
   },
   BlockSelectorV2 = {
-    avg = 864660,
+    deployment = {
+      avg = 864660,
+    },
     functions = {
       instantiate = {
         avg = 155859,
@@ -26,21 +30,27 @@ return {
         ncalls = 13,
       },
       produceBlock = {
-        avg = 51410,
-        max = 52524,
-        min = 49635,
+        avg = 51425,
+        max = 52580,
+        min = 49675,
         ncalls = 8,
       },
     },
   },
   Difficulty = {
-    avg = 150550,
+    deployment = {
+      avg = 150550,
+    },
   },
   Eligibility = {
-    avg = 282066,
+    deployment = {
+      avg = 267882,
+    },
   },
   PoS = {
-    avg = 1511532,
+    deployment = {
+      avg = 1511532,
+    },
     functions = {
       instantiate = {
         avg = 477258,
@@ -59,12 +69,14 @@ return {
     },
   },
   PoSV2Aux = {
-    avg = 2390967,
+    deployment = {
+      avg = 2390775,
+    },
     functions = {
       _produceBlockGas = {
-        avg = 79003,
-        max = 80273,
-        min = 77313,
+        avg = 78828,
+        max = 80081,
+        min = 77121,
         ncalls = 50,
       },
       adjustDifficultyGas = {
@@ -74,15 +86,15 @@ return {
         ncalls = 50,
       },
       canProduceBlockGas = {
-        avg = 33110,
-        max = 33234,
-        min = 33005,
+        avg = 32936,
+        max = 33013,
+        min = 32801,
         ncalls = 50,
       },
       produceBlock = {
-        avg = 113055,
-        max = 115744,
-        min = 112824,
+        avg = 112877,
+        max = 115557,
+        min = 112652,
         ncalls = 50,
       },
       recordBlockGas = {
@@ -94,21 +106,25 @@ return {
     },
   },
   PoSV2FactoryImpl = {
-    avg = 2535154,
+    deployment = {
+      avg = 2534938,
+    },
     functions = {
       createNewChain = {
-        avg = 1980246,
+        avg = 1980046,
         ncalls = 4,
       },
     },
   },
   PoSV2Impl = {
-    avg = 2113813,
+    deployment = {
+      avg = 2113597,
+    },
     functions = {
       produceBlock = {
-        avg = 112913,
-        max = 112980,
-        min = 112880,
+        avg = 112742,
+        max = 112769,
+        min = 112728,
         ncalls = 3,
       },
       terminate = {
@@ -118,7 +134,9 @@ return {
     },
   },
   RewardManager = {
-    avg = 341685,
+    deployment = {
+      avg = 341685,
+    },
     functions = {
       reward = {
         avg = 34775,
@@ -127,7 +145,11 @@ return {
     },
   },
   RewardManagerV2Impl = {
-    avg = 734676,
+    deployment = {
+      avg = 734676,
+      max = 734679,
+      min = 734667,
+    },
     functions = {
       reward = {
         avg = 48133,
@@ -136,11 +158,13 @@ return {
         ncalls = 54,
       },
     },
-    max = 734679,
-    min = 734667,
   },
   StakingImpl = {
-    avg = 626264,
+    deployment = {
+      avg = 626264,
+      max = 626268,
+      min = 626220,
+    },
     functions = {
       stake = {
         avg = 81610,
@@ -161,7 +185,5 @@ return {
         ncalls = 6,
       },
     },
-    max = 626268,
-    min = 626220,
   },
 }
