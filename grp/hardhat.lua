@@ -57,9 +57,11 @@ local function compile (ast)
             elseif #l == 6 then
                 local contractname = l[1]
                 local contract = smartget(report, contractname)
-                contract.min = tonumber(l[2])
-                contract.max = tonumber(l[3])
-                contract.avg = tonumber(l[4])
+                contract.deployment = {
+                    min = tonumber(l[2]),
+                    max = tonumber(l[3]),
+                    avg = tonumber(l[4]),
+                }
             end
         end
     end

@@ -1,6 +1,8 @@
 return {
   BlockSelector = {
-    avg = 3815242,
+    deployment = {
+      avg = 3815242,
+    },
     functions = {
       instantiate = {
         avg = 155515,
@@ -17,7 +19,9 @@ return {
     },
   },
   BlockSelectorV2 = {
-    avg = 864660,
+    deployment = {
+      avg = 864660,
+    },
     functions = {
       instantiate = {
         avg = 155859,
@@ -34,13 +38,19 @@ return {
     },
   },
   Difficulty = {
-    avg = 150550,
+    deployment = {
+      avg = 150550,
+    },
   },
   Eligibility = {
-    avg = 282066,
+    deployment = {
+      avg = 282066,
+    },
   },
   PoS = {
-    avg = 1511532,
+    deployment = {
+      avg = 1511532,
+    },
     functions = {
       instantiate = {
         avg = 477258,
@@ -59,7 +69,9 @@ return {
     },
   },
   PoSV2Aux = {
-    avg = 2390967,
+    deployment = {
+      avg = 2390967,
+    },
     functions = {
       _produceBlockGas = {
         avg = 79021,
@@ -94,7 +106,9 @@ return {
     },
   },
   PoSV2FactoryImpl = {
-    avg = 2535154,
+    deployment = {
+      avg = 2535154,
+    },
     functions = {
       createNewChain = {
         avg = 1980246,
@@ -103,7 +117,9 @@ return {
     },
   },
   PoSV2Impl = {
-    avg = 2113813,
+    deployment = {
+      avg = 2113813,
+    },
     functions = {
       produceBlock = {
         avg = 112925,
@@ -118,7 +134,9 @@ return {
     },
   },
   RewardManager = {
-    avg = 341685,
+    deployment = {
+      avg = 341685,
+    },
     functions = {
       reward = {
         avg = 34775,
@@ -127,7 +145,11 @@ return {
     },
   },
   RewardManagerV2Impl = {
-    avg = 734676,
+    deployment = {
+      avg = 734676,
+      max = 734679,
+      min = 734667,
+    },
     functions = {
       reward = {
         avg = 48133,
@@ -136,11 +158,13 @@ return {
         ncalls = 54,
       },
     },
-    max = 734679,
-    min = 734667,
   },
   StakingImpl = {
-    avg = 626264,
+    deployment = {
+      avg = 626264,
+      max = 626268,
+      min = 626220,
+    },
     functions = {
       stake = {
         avg = 81610,
@@ -161,7 +185,5 @@ return {
         ncalls = 6,
       },
     },
-    max = 626268,
-    min = 626220,
   },
 }
