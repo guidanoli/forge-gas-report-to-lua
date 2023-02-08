@@ -7,5 +7,5 @@ run() {
     lua main.lua "$@"
 }
 
-run parse --format=forge --input=test/input/forge.txt --output=test/output/forge.lua
-run parse --format=hardhat --input=test/input/hardhat.txt --output=test/output/hardhat.lua
+run parse --format=forge --input=test/input/forge1.txt --output=test/output/forge1.lua
+run parse --format=hardhat --input=test/input/hardhat1.txt --output=test/output/hardhat1.lua
