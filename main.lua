@@ -20,6 +20,11 @@ Commands:
     where <a> and <b> are paths to Lua files
     if <b> is omitted, stdin is used instead
     if --output is ommited, stdout is used instead
+
+  printdiff [--input=<a>] [--output=<b>]
+    where <a> and <b> are paths to Lua files
+    if --input is omitted, stdin is used instead
+    if --output is ommited, stdout is used instead
 ]=]
 
 local function help (s)
@@ -70,6 +75,12 @@ if type(arg) == 'table' and (lpeg.P"main.lua" * -1):match(arg[0]) then
         local tb = loadfile(arg[3])()
         local td = grp.diff:difftables(ta, tb)
         printluatable(td)
+    elseif arg[1] == 'printdiff' then
+        local argt = parseargs(2)
+        io.input(argt.input)
+        io.output(argt.output)
+        local td = load(io.read('a'))()
+        grp.diff:printdiff(td)
     else
         help('invalid <command>: ' .. arg[1])
     end

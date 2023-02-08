@@ -29,4 +29,53 @@ function diff:difftables (ta, tb)
     return td
 end
 
+local function printmdlineaux (a, ...)
+    if a ~= nil then
+        if a == '' then
+            io.write('| ')
+        else
+            io.write('| ' .. a .. ' ')
+        end
+        printmdlineaux(...)
+    end
+end
+
+-- print line of markdown table
+local function printmdline (...)
+    printmdlineaux(...)
+    io.write('|\n')
+end
+
+local function fmtdiff (d)
+    if d and d.absdiff then
+        return string.format('%d (%.2f%%)', d.absdiff, 100 * d.reldiff)
+    else
+        return ''
+    end
+end
+
+local function fmtfuncdiff (f)
+    return fmtdiff(f.min), fmtdiff(f.max), fmtdiff(f.avg)
+end
+
+local function fmtdeploydiff (c)
+    return '', '', fmtdiff(c.avg)
+end
+
+-- prints diff as markdown table
+function diff:printdiff (t)
+    printmdline('Contract', 'Function', 'Min', 'Max', 'Avg')
+    printmdline(':-', ':-', ':-:', ':-:', ':-:')
+    for cname, c in pairs(t) do
+        if c.deployment then
+            printmdline(cname, '', fmtdeploydiff(c.deployment))
+        end
+        if c.functions then
+            for fname, f in pairs(c.functions) do
+                printmdline(cname, fname, fmtfuncdiff(f))
+            end
+        end
+    end
+end
+
 return diff
