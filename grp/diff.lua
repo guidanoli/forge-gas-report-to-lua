@@ -10,12 +10,18 @@ function diff:difftables (ta, tb)
         if vb ~= nil then
             if type(va) == type(vb) then
                 if type(va) == 'number' then
-                    td[k] = {
-                        absdiff = va - vb,
-                        reldiff = (va - vb) / va,
-                    }
+                    local absdiff = va - vb
+                    if absdiff ~= 0 then
+                        td[k] = {
+                            absdiff = va - vb,
+                            reldiff = (va - vb) / va,
+                        }
+                    end
                 elseif type(va) == 'table' then
-                    td[k] = self:difftables(va, vb)
+                    local t = self:difftables(va, vb)
+                    if next(t) ~= nil then
+                        td[k] = t
+                    end
                 end
             end
         end
