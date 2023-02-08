@@ -11,8 +11,10 @@ Usage: lua main.lua <command> [args...]
 
 Commands:
 
-  parse --format=<fmt>
+  parse --format=<fmt> [--input=<a>] [--output=<b>]
     where <fmt> can be: forge, hardhat
+    if --input is ommited, stdin is used instead
+    if --output is ommited, stdout is used instead
 
   diff <a> [<b>]
     where <a> and <b> are paths to Lua files
@@ -44,6 +46,8 @@ if type(arg) == 'table' and (lpeg.P"main.lua" * -1):match(arg[0]) then
     end
     if arg[1] == 'parse' then
         local argt = parseargs(2)
+        io.input(argt.input)
+        io.output(argt.output)
         if not argt.format then
             help('expected --format=<fmt> argument')
         elseif argt.format == 'forge' then
