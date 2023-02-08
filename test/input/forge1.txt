@@ -1,9 +1,7 @@
-Missing dependencies found. Installing now...
-
-Compiling 14 files with 0.7.6
 Compiling 44 files with 0.8.16
-Solc 0.7.6 finished in 321.07ms
-Solc 0.8.16 finished in 2.57s
+Compiling 14 files with 0.7.6
+Solc 0.7.6 finished in 337.70ms
+Solc 0.8.16 finished in 3.00s
 Compiler run successful (with warnings)
 [33mwarning[2018]: [0m[33mWarning: Function state mutability can be restricted to view
   --> contracts/v2/test/PoSV2Aux.sol:72:5:
@@ -16,30 +14,30 @@ Compiler run successful (with warnings)
 
 Running 1 test for test/foundry/Difficulty.t.sol:DifficultyTest
 [32m[PASS][0m testDifficultyAdjustment() (gas: 1306967)
-Test result: [32mok[0m. 1 passed; 0 failed; finished in 7.46ms
+Test result: [32mok[0m. 1 passed; 0 failed; finished in 8.72ms
 
 Running 4 tests for test/foundry/RewardManagerV2.t.sol:RMV2Test
 [32m[PASS][0m testRewardV1(uint32) (runs: 256, μ: 9295, ~: 9295)
 [32m[PASS][0m testRewardV1Revert() (gas: 9312)
 [32m[PASS][0m testRewardV2() (gas: 465927)
 [32m[PASS][0m testRewardV2Revert() (gas: 33760)
-Test result: [32mok[0m. 4 passed; 0 failed; finished in 21.18ms
+Test result: [32mok[0m. 4 passed; 0 failed; finished in 21.71ms
 
 Running 2 tests for test/foundry/PoSV2.t.sol:PoSV2Test
 [32m[PASS][0m testProduceBlockV1() (gas: 18730709)
 [32m[PASS][0m testProduceBlockV2() (gas: 109977885)
-Test result: [32mok[0m. 2 passed; 0 failed; finished in 169.16ms
+Test result: [32mok[0m. 2 passed; 0 failed; finished in 167.30ms
 
 Running 1 test for test/foundry/Historical.t.sol:HistoricalTest
 [32m[PASS][0m testLatest() (gas: 9598421140)
-Test result: [32mok[0m. 1 passed; 0 failed; finished in 3.20s
+Test result: [32mok[0m. 1 passed; 0 failed; finished in 3.63s
 
 Running 4 tests for test/foundry/Eligibility.t.sol:EligibilityTest
-[32m[PASS][0m testEligibility(uint256,uint256,address,uint256) (runs: 256, μ: 2911276, ~: 3013854)
+[32m[PASS][0m testEligibility(uint256,uint256,address,uint256) (runs: 256, μ: 2865059, ~: 3009722)
 [32m[PASS][0m testEligibilityEdgeCase() (gas: 23409)
 [32m[PASS][0m testSelectionBlocksPassed(uint256) (runs: 256, μ: 376356, ~: 376356)
 [32m[PASS][0m testSmallStakers() (gas: 996355742)
-Test result: [32mok[0m. 4 passed; 0 failed; finished in 6.41s
+Test result: [32mok[0m. 4 passed; 0 failed; finished in 6.98s
 | contracts/v2/Difficulty.sol:Difficulty contract |                 |     |        |     |         |
 |-------------------------------------------------|-----------------|-----|--------|-----|---------|
 | Deployment Cost                                 | Deployment Size |     |        |     |         |

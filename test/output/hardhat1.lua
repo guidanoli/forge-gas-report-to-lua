@@ -11,9 +11,9 @@ return {
         ncalls = 13,
       },
       produceBlock = {
-        avg = 61677,
+        avg = 61649,
         max = 62819,
-        min = 59976,
+        min = 59985,
         ncalls = 8,
       },
     },
@@ -30,9 +30,9 @@ return {
         ncalls = 13,
       },
       produceBlock = {
-        avg = 51406,
-        max = 52542,
-        min = 49558,
+        avg = 51411,
+        max = 52533,
+        min = 49531,
         ncalls = 8,
       },
     },
@@ -74,9 +74,9 @@ return {
     },
     functions = {
       _produceBlockGas = {
-        avg = 79021,
-        max = 80292,
-        min = 77324,
+        avg = 79003,
+        max = 80270,
+        min = 77293,
         ncalls = 50,
       },
       adjustDifficultyGas = {
@@ -86,15 +86,15 @@ return {
         ncalls = 50,
       },
       canProduceBlockGas = {
-        avg = 33128,
-        max = 33224,
+        avg = 33111,
+        max = 33202,
         min = 33025,
         ncalls = 50,
       },
       produceBlock = {
-        avg = 113052,
-        max = 115835,
-        min = 112764,
+        avg = 113067,
+        max = 115684,
+        min = 112884,
         ncalls = 50,
       },
       recordBlockGas = {
@@ -122,9 +122,9 @@ return {
     },
     functions = {
       produceBlock = {
-        avg = 112925,
-        max = 112932,
-        min = 112921,
+        avg = 112917,
+        max = 112921,
+        min = 112910,
         ncalls = 3,
       },
       terminate = {
