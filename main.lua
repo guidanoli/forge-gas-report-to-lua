@@ -61,7 +61,7 @@ if type(arg) == 'table' and (lpeg.P"main.lua" * -1):match(arg[0]) then
         end
         local ta = loadfile(arg[2])()
         local tb = loadfile(arg[3])()
-        local td = grp.util:difftables(ta, tb)
+        local td = grp.diff:difftables(ta, tb)
         printluatable(td)
     else
         help('invalid <command>: ' .. arg[1])
