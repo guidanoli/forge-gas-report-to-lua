@@ -16,7 +16,7 @@ Commands:
     if --input is ommited, stdin is used instead
     if --output is ommited, stdout is used instead
 
-  diff <a> [<b>] [--output=<c>]
+  diff <a> [<b> [--output=<c>]]
     where <a> and <b> are paths to Lua files
     if <b> is omitted, stdin is used instead
     if --output is ommited, stdout is used instead
