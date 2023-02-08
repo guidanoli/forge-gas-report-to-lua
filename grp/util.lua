@@ -26,7 +26,7 @@ end
 
 -- checks if string is valid name
 function util:isname (s)
-    return string.match(s, '^[_%a][_%w]*$') ~= nil and self.reserved[s] == nil
+    return type(s) == 'string' and string.match(s, '^[_%a][_%w]*$') ~= nil and self.reserved[s] == nil
 end
 
 -- checks if object is serializable
@@ -38,9 +38,27 @@ function util.keycmp (a, b)
     local ta = type(a)
     local tb = type(b)
     if ta == tb then
-        return tostring(a) < tostring(b)
+        if ta == 'number' then
+            return a < b
+        else
+            return tostring(a) < tostring(b)
+        end
     else
         return ta < tb
+    end
+end
+
+function util:spairs (t)
+    local keys = {}
+    for k in pairs(t) do
+        table.insert(keys, k)
+    end
+    table.sort(keys, self.keycmp)
+    local i = 0
+    return function()
+        i = i + 1
+        local k = rawget(keys, i)
+        return k, t[k]
     end
 end
 
@@ -57,49 +75,32 @@ function util:serialize (t, sp, visited)
         local s = '{'
 
         -- check ref cycles
-        if visited[t] then
-            error('reference cycle', 2)
-        end
+        assert(not visited[t], 'reference cycle')
         visited[t] = true
 
+        -- set of serialized keys
+        local serialized = {}
+
         -- print integer keys in order
-        local ikeys = {}
         for i, v in ipairs(t) do
-            ikeys[i] = true
-            s = s .. '\n' .. np .. self:serialize(v, np, visited) .. ','
+            serialized[i] = true
+            local vstr = self:serialize(v, np, visited)
+            s = s .. '\n' .. np .. vstr .. ','
         end
 
         -- print name-like string keys in order
-        local nkeys = {}
-        do
-            local onkeys = {}
-            for k in pairs(t) do
-                if not ikeys[k] then
-                    if type(k) == 'string' and self:isname(k) then
-                        table.insert(onkeys, k)
-                        nkeys[k] = true
-                    end
-                end
-            end
-            table.sort(onkeys)
-            for _, k in ipairs(onkeys) do
-                local v = rawget(t, k)
+        for k, v in self:spairs(t) do
+            if not serialized[k] and self:isname(k) then
+                serialized[k] = true
                 local vstr = self:serialize(v, np, visited)
                 s = s .. '\n' .. np .. k .. ' = ' .. vstr .. ','
             end
         end
 
         -- print remaining keys in order
-        do
-            local orkeys = {}
-            for k in pairs(t) do
-                if not ikeys[k] and not nkeys[k] then
-                    table.insert(orkeys, k)
-                end
-            end
-            table.sort(orkeys, self.keycmp)
-            for _, k in ipairs(orkeys) do
-                local v = rawget(t, k)
+        for k, v in self:spairs(t) do
+            if not serialized[k] then
+                serialized[k] = true
                 local kstr = '[' .. self:serialize(k, np, visited) .. ']'
                 local vstr = self:serialize(v, np, visited)
                 s = s .. '\n' .. np .. kstr .. ' = ' .. vstr .. ','
