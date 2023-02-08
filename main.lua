@@ -16,9 +16,10 @@ Commands:
     if --input is ommited, stdin is used instead
     if --output is ommited, stdout is used instead
 
-  diff <a> [<b>]
+  diff <a> [<b>] [--output=<c>]
     where <a> and <b> are paths to Lua files
     if <b> is omitted, stdin is used instead
+    if --output is ommited, stdout is used instead
 ]=]
 
 local function help (s)
@@ -60,6 +61,8 @@ if type(arg) == 'table' and (lpeg.P"main.lua" * -1):match(arg[0]) then
             help('invalid <fmt>: ' .. argt.format)
         end
     elseif arg[1] == 'diff' then
+        local argt = parseargs(4)
+        io.output(argt.output)
         if not arg[2] then
             help('expected <a>')
         end
