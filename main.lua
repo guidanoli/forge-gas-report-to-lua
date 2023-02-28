@@ -1,7 +1,7 @@
 local lpeg = require 'lpeg'
 local grp = require 'grp'
 
-local KeywordArgument = lpeg.P"--" * lpeg.C((1 - lpeg.P"=")^1) * lpeg.P"=" * lpeg.C(lpeg.P(1)^0)
+local KeywordArgument = lpeg.P"--" * lpeg.C(lpeg.P(1)^1)
 
 local helpmsg = [=[
 
@@ -11,17 +11,17 @@ Usage: lua main.lua <command> [args...]
 
 Commands:
 
-  parse --format=<fmt> [--input=<a>] [--output=<b>]
+  parse [--format <fmt>] [--input <a>] [--output <b>]
     where <fmt> can be: forge, hardhat
     if --input is ommited, stdin is used instead
     if --output is ommited, stdout is used instead
 
-  diff <a> [<b> [--output=<c>]]
+  diff <a> [<b> [--output <c>]]
     where <a> and <b> are paths to Lua files
     if <b> is omitted, stdin is used instead
     if --output is ommited, stdout is used instead
 
-  printdiff [--input=<a>] [--output=<b>]
+  printdiff [--input <a>] [--output <b>]
     where <a> and <b> are paths to Lua files
     if --input is omitted, stdin is used instead
     if --output is ommited, stdout is used instead
@@ -33,10 +33,11 @@ end
 
 local function parseargs (start)
     local argt = {}
-    for i = start, #arg do
+    for i = start, #arg, 2 do
         local a = rawget(arg, i)
-        local key, value = KeywordArgument:match(a)
+        local key = KeywordArgument:match(a)
         if not key then help('invalid argument: ' .. a) end
+        local value = rawget(arg, i + 1)
         rawset(argt, key, value)
     end
     return argt
