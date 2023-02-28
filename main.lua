@@ -47,6 +47,38 @@ local function printluatable (t)
     io.write('return ' .. grp.util:serialize(t) .. '\n')
 end
 
+local parsers = {
+    forge = grp.forge.parse,
+    hardhat = grp.hardhat.parse,
+}
+
+local function parsereport (report, fmt)
+    if fmt == nil then
+        local ast
+        for fmt, parser in pairs(parsers) do
+            ast = parser(report)
+            if ast and next(ast) ~= nil then
+                return ast
+            end
+        end
+        if ast == nil then
+            help('failed parsing')
+        end
+    else
+        local parser = rawget(parsers, fmt)
+        if parser == nil then
+            help('invalid <fmt>: ' .. fmt)
+        else
+            local ast = parser(report)
+            if ast == nil then
+                help('failed parsing')
+            else
+                return ast
+            end
+        end
+    end
+end
+
 if type(arg) == 'table' and (lpeg.P"main.lua" * -1):match(arg[0]) then
     if not arg[1] then
         help('expected <command>')
@@ -55,17 +87,9 @@ if type(arg) == 'table' and (lpeg.P"main.lua" * -1):match(arg[0]) then
         local argt = parseargs(2)
         io.input(argt.input)
         io.output(argt.output)
-        if not argt.format then
-            help('expected --format=<fmt> argument')
-        elseif argt.format == 'forge' then
-            local t = grp.forge.parse(io.read('a'))
-            printluatable(t)
-        elseif argt.format == 'hardhat' then
-            local t = grp.hardhat.parse(io.read('a'))
-            printluatable(t)
-        else
-            help('invalid <fmt>: ' .. argt.format)
-        end
+        local rep = io.read('a')
+        local t = parsereport(rep, argt.format)
+        printluatable(t)
     elseif arg[1] == 'diff' then
         local argt = parseargs(4)
         io.output(argt.output)
