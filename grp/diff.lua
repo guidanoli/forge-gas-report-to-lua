@@ -1,3 +1,5 @@
+local util = require "grp.util"
+
 local diff = {}
 
 -- calculates the difference of each entry in two tables recursively
@@ -63,19 +65,19 @@ local function fmtdeploydiff (c)
 end
 
 local function isdiffprintable (d)
-    return d and (d.min or d.max or d.avg or d.deployment)
+    return d and (d.min or d.max or d.avg)
 end
 
 -- prints diff as markdown table
 function diff:printdiff (t)
     printmdline('Contract', 'Function', 'Min', 'Max', 'Avg')
     printmdline(':-', ':-', ':-:', ':-:', ':-:')
-    for cname, c in pairs(t) do
+    for cname, c in util:spairs(t) do
         if isdiffprintable(c.deployment) then
             printmdline(cname, '', fmtdeploydiff(c.deployment))
         end
         if c.functions then
-            for fname, f in pairs(c.functions) do
+            for fname, f in util:spairs(c.functions) do
                 if isdiffprintable(f) then
                     printmdline(cname, fname, fmtfuncdiff(f))
                 end
