@@ -62,17 +62,23 @@ local function fmtdeploydiff (c)
     return '', '', fmtdiff(c.avg)
 end
 
+local function isdiffprintable (d)
+    return d and (d.min or d.max or d.avg or d.deployment)
+end
+
 -- prints diff as markdown table
 function diff:printdiff (t)
     printmdline('Contract', 'Function', 'Min', 'Max', 'Avg')
     printmdline(':-', ':-', ':-:', ':-:', ':-:')
     for cname, c in pairs(t) do
-        if c.deployment then
+        if isdiffprintable(c.deployment) then
             printmdline(cname, '', fmtdeploydiff(c.deployment))
         end
         if c.functions then
             for fname, f in pairs(c.functions) do
-                printmdline(cname, fname, fmtfuncdiff(f))
+                if isdiffprintable(f) then
+                    printmdline(cname, fname, fmtfuncdiff(f))
+                end
             end
         end
     end
