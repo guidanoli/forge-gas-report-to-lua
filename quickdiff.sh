@@ -20,8 +20,8 @@ cd "${BASH_SOURCE%/*}"
 a=`mktemp`
 b=`mktemp`
 
-lua main.lua parse --input "$apath" --output "$a"
-lua main.lua parse --input "$bpath" --output "$b"
+lua main.lua parse < "$apath" > "$a"
+lua main.lua parse < "$bpath" > "$b"
 lua main.lua diff "$a" "$b" | lua main.lua printdiff
 
 rm -f "$a" "$b"
