@@ -12,13 +12,14 @@ Parses gas reports in different formats and outputs a Lua table in the same form
 ### Parsing gas reports
 
 On the repository root, run the following command, where `<fmt>` is either `forge` or `hardhat`.
+If this option is not provided, the tool tries to guess the format by running each parser.
 
 ```sh
-lua main.lua parse --format=<fmt>
+lua main.lua parse [<fmt>]
 ```
 
 The program reads the gas report from the standard input and prints the Lua table to the standard output.
-You can redirect these streams to files either through operating system pipes or through the `--input` and `--output` command line options.
+You can redirect these streams to files through operating system pipes.
 
 ### Comparing gas reports
 
@@ -38,7 +39,18 @@ In the context of GitHub repositories, Markdown in the primary markup language. 
 lua main.lua printdiff
 ```
 
-Similar to `parse`, this program reads to `stdin` and writes to `stdout`. These streams can be overriden by options `--input` and `--output`.
+Similar to `parse`, this program reads to `stdin` and writes to `stdout`.
+
+## Handy shell script
+
+If you want to compare two gas reports quickly, you can use the following script.
+
+```sh
+./quickdiff.sh <a> <b>
+```
+
+Where `<a>` and `<b>` are text files in either Forge or Hardhat format.
+The tool tries to guess the format automatically.
 
 ## Tests
 
