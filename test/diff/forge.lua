@@ -3,7 +3,7 @@ return {
     deployment = {
       avg = {
         absdiff = -13212,
-        reldiff = -0x1.d391fec379346p-5,
+        reldiff = -0x1.011c46f299ae5p-4,
       },
       size = {
         absdiff = -66,
@@ -14,15 +14,15 @@ return {
       whenCanProduceBlock = {
         avg = {
           absdiff = -192,
-          reldiff = -0x1.e08eaa5a92e3ap-8,
+          reldiff = -0x1.2f684bda12f68p-5,
         },
         max = {
           absdiff = -192,
-          reldiff = -0x1.b60454baf6794p-8,
+          reldiff = -0x1.971bcbeb31a9bp-6,
         },
         median = {
           absdiff = -192,
-          reldiff = -0x1.e08092672c9b7p-8,
+          reldiff = -0x1.2f3b5f8012f3bp-5,
         },
       },
     },
@@ -31,7 +31,7 @@ return {
     deployment = {
       avg = {
         absdiff = -200,
-        reldiff = -0x1.b303540384bfbp-14,
+        reldiff = -0x1.b7cd70101c3f7p-14,
       },
       size = {
         absdiff = -1,
@@ -42,37 +42,37 @@ return {
       ["produceBlock(uint256)(bool)"] = {
         avg = {
           absdiff = -192,
-          reldiff = -0x1.455bc233723dp-8,
+          reldiff = -0x1.63f8ee7943c24p-7,
         },
         max = {
           absdiff = -192,
-          reldiff = -0x1.aff3226219d4p-9,
+          reldiff = -0x1.51b25298baee7p-8,
         },
         median = {
           absdiff = -192,
-          reldiff = -0x1.457e3b5c75737p-8,
+          reldiff = -0x1.644b81001644cp-7,
         },
         min = {
           absdiff = -192,
-          reldiff = -0x1.5f1d777d13232p-8,
+          reldiff = -0x1.a809cce4a6f38p-7,
         },
       },
       ["produceBlock(uint32,bytes)(bool)"] = {
         avg = {
           absdiff = -192,
-          reldiff = -0x1.8429ef27be232p-10,
+          reldiff = -0x1.cf2d71b76e3d4p-10,
         },
         max = {
           absdiff = -192,
-          reldiff = -0x1.3ef879b770f23p-10,
+          reldiff = -0x1.6ff002b1e2051p-10,
         },
         median = {
           absdiff = -192,
-          reldiff = -0x1.85b2514c3b45dp-10,
+          reldiff = -0x1.d15c9115abfb9p-10,
         },
         min = {
           absdiff = -192,
-          reldiff = -0x1.d9a367e20cfaep-10,
+          reldiff = -0x1.2725175d4bad8p-9,
         },
       },
     },

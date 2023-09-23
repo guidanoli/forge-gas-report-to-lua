@@ -1,89 +1,89 @@
 return {
   Difficulty = {
     deployment = {
-      avg = 110563,
+      avg = 89563,
       size = 505,
     },
     functions = {
       getNewDifficulty = {
-        avg = 21715,
-        max = 21718,
-        median = 21718,
-        min = 21681,
+        avg = 715,
+        max = 718,
+        median = 718,
+        min = 681,
         ncalls = 2513,
       },
     },
   },
   Eligibility = {
     deployment = {
-      avg = 231479,
+      avg = 210479,
       size = 1109,
     },
     functions = {
       whenCanProduceBlock = {
-        avg = 26184,
-        max = 28727,
-        median = 26187,
-        min = 21489,
+        avg = 5184,
+        max = 7727,
+        median = 5187,
+        min = 489,
         ncalls = 162518,
       },
     },
   },
   PoSV2Impl = {
     deployment = {
-      avg = 1928358,
+      avg = 1907358,
       size = 10363,
     },
     functions = {
       ["produceBlock(uint256)(bool)"] = {
-        avg = 38674,
-        max = 58261,
-        median = 38658,
-        min = 35837,
+        avg = 17674,
+        max = 37261,
+        median = 17658,
+        min = 14837,
         ncalls = 1000,
       },
       ["produceBlock(uint32,bytes)(bool)"] = {
-        avg = 129666,
-        max = 157794,
-        median = 129156,
-        min = 106266,
+        avg = 108666,
+        max = 136794,
+        median = 108156,
+        min = 85266,
         ncalls = 1001,
       },
     },
   },
   RewardManagerV2Impl = {
     deployment = {
-      avg = 649080,
+      avg = 628080,
       size = 3558,
     },
     functions = {
       ["reward(uint32,address)"] = {
-        avg = 25012,
-        max = 25016,
-        median = 25016,
-        min = 21626,
+        avg = 4012,
+        max = 4016,
+        median = 4016,
+        min = 626,
         ncalls = 1002,
       },
       ["reward(uint32[])"] = {
-        avg = 58027,
-        max = 94198,
-        median = 55488,
-        min = 28182,
+        avg = 37027,
+        max = 73198,
+        median = 34488,
+        min = 7182,
         ncalls = 12,
       },
     },
   },
   UnrolledCordic = {
     deployment = {
-      avg = 337380,
+      avg = 316380,
       size = 1638,
     },
     functions = {
       log2Times1e18 = {
-        avg = 23489,
-        max = 23668,
-        median = 23491,
-        min = 23291,
+        avg = 2489,
+        max = 2668,
+        median = 2491,
+        min = 2291,
         ncalls = 162475,
       },
     },
