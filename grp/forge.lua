@@ -38,31 +38,23 @@ local function getcontractname (title)
     return assert(ContractTitle:match(title), 'bad contract title')
 end
 
-local function addtxcost(n)
-    if type(n) == 'number' then
-        return n + 21000
-    else
-        return n
-    end
-end
-
 local function compile (ast)
     local report = {}
     for i, t in ipairs(ast) do
         local contract = {}
         local contractname = getcontractname(t[1][1])
         contract.deployment = {
-            avg = addtxcost(tonumber(t[4][1])),
+            avg = tonumber(t[4][1]),
             size = tonumber(t[4][2]),
         }
         local functions = {}
         for j = 6, #t do
             local funcname = t[j][1]
             functions[funcname] = {
-                min = addtxcost(tonumber(t[j][2])),
-                avg = addtxcost(tonumber(t[j][3])),
-                median = addtxcost(tonumber(t[j][4])),
-                max = addtxcost(tonumber(t[j][5])),
+                min = tonumber(t[j][2]),
+                avg = tonumber(t[j][3]),
+                median = tonumber(t[j][4]),
+                max = tonumber(t[j][5]),
                 ncalls = tonumber(t[j][6]),
             }
         end
