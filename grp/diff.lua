@@ -57,7 +57,7 @@ local function fmtdiff (d)
 end
 
 local function fmtfuncdiff (f)
-    return fmtdiff(f.min), fmtdiff(f.max), fmtdiff(f.avg)
+    return fmtdiff(f.min), fmtdiff(f.avg), fmtdiff(f.max)
 end
 
 local function fmtdeploydiff (c)
@@ -70,7 +70,7 @@ end
 
 -- prints diff as markdown table
 function diff:printdiff (t)
-    printmdline('Contract', 'Function', 'Min', 'Max', 'Avg')
+    printmdline('Contract', 'Function', 'Min', 'Avg', 'Max')
     printmdline(':-', ':-', ':-:', ':-:', ':-:')
     for cname, c in util:spairs(t) do
         if isdiffprintable(c.deployment) then
